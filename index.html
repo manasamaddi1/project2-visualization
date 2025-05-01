@@ -152,46 +152,102 @@
     </header>
 
     <main>
-      <h2>Proposition: [STATE PROPOSITION]</h2>
+      <h2>Proposition: Scientific Output Drops as Researcher Density Increases </h2>
 
       <section>
         <h3>FOR the Proposition</h3>
 
         <figure>
-          <img src="IMAGE_FILENAME" alt="" />
-          <figcaption>BRIEF CAPTION HERE.</figcaption>
+          <img src="new-pro-design.png" alt="image PRO proposition" style="max-width: 1200px; width: 100%; height: auto;" />
+          <figcaption>This bar chart shows the average number of scientific journal articles published by countries grouped into equal researcher density bins. Surprisingly, nations with fewer researchers per million tend to produce more scientific output on average, raising questions about research efficiency and allocation.</figcaption>
         </figure>
 
         <p>Design Decisions and Rationale:</p>
 
         <ul>
-          <li>RATIONALE_1</li>
-          <li>RATIONALE_2</li>
-          <li>RATIONALE_3</li>
+          <li>
+            <b>Evenly Binned Researcher Categories</b><br>
+            <strong>Score:</strong> +2 (fully earnest)<br>
+            I divided researcher density into equal-width intervals of 2,000 researchers per million (0–2k, 2–4k, etc.) using pd.cut. This binning approach guarantees consistent spacing and emphasizes trends within organized groupings instead of sometimes deceptive quantiles. Preserving consistent width across categories helps it to avoid favoring any particular group. Reviewing distribution spread helped me to confirm bin uniformity and prevent data clustering in any one group.
+          </li>
+
+          <li>
+            <b>Advanced Data Transformations</b><br>
+            <strong>Score:</strong> +2 (fully earnest)<br>
+            I applied several layers of data transformation beyond basic binning. To eliminate biases from limited data, I first filtered the dataset to keep only nations with non-missing values for both researcher density and journal production measures. To preserve interpretability, I averaged the article output in each bin to summarize the data. To avoid graph distortion, extreme outliers were deleted and column names were changed for simpler parsing. I also converted the researcher totals into whole-number bin ranges for more straightforward reading. To narrow the focus of study and avoid pattern dilution, I particularly selected scientific journal papers (excluding technical publications) for the y-axis. These changes were meant to improve statistical validity while supporting the narrative goal and to clean and condense the data.
+          </li>
+          <li>
+            <b>Calm Blue Gradient Color Scheme</b><br>
+            <strong>Score:</strong> +1.5 (earnest)<br>
+            Lighter bars show lesser researcher density in my dark-to-light blue gradient. This development gently reflects the drop in output, hence guiding natural visual interpretation without exaggeration. The consistent hue also prevents the addition of opposing hues that could compromise message neutrality.
+          </li>
+          <li>
+            <b>Annotations to Emphasize Key Insights</b><br>
+            <strong>Score:</strong> +2 (fully earnest)<br>
+            I added text boxes directly onto the bars and in the space between bins to reinforce specific takeaways, like the unexpected dominance of the 0–2k group and the steep drop-off between mid-tier groups. These annotations help guide the viewer’s eye and offer useful narrative cues without manipulating the underlying data.
+
+          </li>
+          <li>
+            <b>Neutral and Descriptive Title</b><br>
+            <strong>Score:</strong> +2 (fully earnest)<br>
+            Deliberately chosen, the title "Average Scientific Output by Researcher Density Group" describes the visual content without implying any position or stance. This neutral framing guarantees that, depending on the provided data, viewers may interpret it rather than being emotionally directed by a loaded title.
+
+          </li>
         </ul>
+        
       </section>
 
       <section>
         <h3>AGAINST the Proposition</h3>
 
         <figure>
-          <img src="IMAGE_FILENAME" alt="" />
-          <figcaption>BRIEF CAPTION HERE.</figcaption>
+          <img src="new contra-design.png" alt="image PRO proposition" style="max-width: 1200px; width: 100%; height: auto;" />
+          <figcaption>This scatterplot shows a positive correlation between researcher density and total journal article output (including technical articles), suggesting that countries with more researchers publish more. However, the graph uses a limited x-axis range and a broader article metric to emphasize the upward trend.</figcaption>
         </figure>
 
         <p>Design Decisions and Rationale:</p>
 
         <ul>
-          <li>RATIONALE_1</li>
-          <li>RATIONALE_2</li>
-          <li>RATIONALE_3</li>
+          <li>
+            <b>Truncated X-Axis Range (1000–5000)            </b><br>
+            <strong>Score:</strong> -1.5 (moderately deceptive)<br>
+            I limited the x-axis to show only countries with researcher densities between 1000 and 5000 per million to make the upward trend more prominent. While this helps maintain a readable visual pattern, it omits both lower and higher density outliers, restricting the viewer's understanding of the complete distribution.
+          </li>
+
+          <li>
+            <b>Use of Combined Scientific and Technical Output
+            </b><br>
+            <strong>Score:</strong> -1 (mildly deceptive)<br>
+            Unlike the proposition graph, this one includes both scientific and technical journal articles in the y-axis. This expanded definition increases overall article counts, which boosts the strength of the visible upward trend. While still a valid metric, it introduces inconsistency between the two graphs that affects comparability.
+
+          </li>
+          <li>
+            <b>Regression Line and Confidence Interval
+            </b><br>
+            <strong>Score:</strong> -1 (mildly deceptive)<br>
+            I emphasized the trend line with a bold regression line and shaded 95% confidence band. This statistical styling highlights the central narrative and downplays the wide scatter of the points. The line visually reinforces the "trend" without implying causation, yet subtly suggests it through styling.
+          </li>
+          <li>
+            <b>Persuasive Title Framing the Data as Causal
+            </b><br>
+            <strong>Score:</strong> -1.5 (moderately deceptive)<br>
+            The title "More Researchers Lead to Greater Scientific Output" frames the relationship as a causal one, even though the data only shows correlation. This phrasing subtly pushes viewers toward a specific interpretation without making the underlying assumptions clear. While this can make the graph more compelling at first glance, it risks misleading audiences into overestimating the strength or direction of the relationship.
+          </li>
+          <li>
+            <b>Directed Annotations for Visual Emphasis</b><br>
+            <strong>Score:</strong> -1 (mildly deceptive)<br>
+            I added key phrases like “Dense research nations still lead in output” and “Correlation holds across most of the range” directly on the plot to reinforce a positive interpretation. While helpful for readability, these annotations steer interpretation in ways that subtly exaggerate the overall regularity of the trend.
+          </li>
         </ul>
       </section>
 
       <section>
         <h2>Final Reflection</h2>
 
-        <p>here is the product</p>
+        <p>Working with the World Bank’s science-and-technology.csv dataset, I created two visualizations exploring the relationship between researcher density and national scientific output. The dataset offered wide coverage across countries and time, but required significant preprocessing: filtering out missing values, removing outliers, renaming columns, and calculating binned averages for meaningful comparisons. The proposition graph was more straightforward to design where I applied equal-width binning and limited the y-axis to scientific journal articles only, allowing for a focused and interpretable trend. The process of cleaning and grouping the data helped surface a surprising and compelling insight which is that countries with fewer researchers sometimes produced more scientific output.
+          <br><br>What challenged me most was designing the contraproposition graph in a way that persuaded without overt manipulation. I experimented with x-axis truncation, broader metric inclusion, and regression overlays to subtly imply correlation. What surprised me was how easily small, seemingly neutral changes, like adjusting a scale or redefining a metric, could steer the viewer’s interpretation. Even though both graphs used accurate data, their messages diverged significantly depending on how the data was framed. That tension made me more aware of how much power design holds in shaping perception.</br></br>
+          I now define ethical analysis and visualization as the practice of presenting data in a way that remains transparent, traceable, and honest, even when persuasive. Acceptable persuasive choices, in my view, simplify complex components without distorting meaning: examples include grouping data for clarity, highlighting relevant annotations, or streamlining labels. Misleading choices, by contrast, remove or obscure context, such as truncating axes without explanation or using inconsistent definitions. The boundary lies in intent and impact: does the design enhance understanding or restrict it? Ethical visualization isn’t about avoiding influence altogether; it’s about ensuring that influence is built on clarity, not concealment.
+          </p>
       </section>
     </main>
   </body>
